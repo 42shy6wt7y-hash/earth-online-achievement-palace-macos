@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>地球online成就殿堂</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">EARTH ONLINE</p>
+          <h1>地球online成就殿堂</h1>
+        </div>
+        <div class="top-actions" id="normalActions">
+          <button class="action-button ghost letter-trigger" id="openLetterButton" type="button">信</button>
+          <button class="action-button ghost" id="openArchiveButton" type="button">档案库</button>
+          <button class="action-button" id="createButton" type="button">创建</button>
+          <button class="action-button danger" id="deleteModeButton" type="button">删除</button>
+        </div>
+        <div class="top-actions hidden" id="deleteActions">
+          <button class="action-button ghost" id="cancelDeleteButton" type="button">取消</button>
+          <button class="action-button danger" id="confirmDeleteButton" type="button">确认删除</button>
+        </div>
+      </header>
+
+      <section class="gallery-shell">
+        <div class="gallery-status">
+          <span id="counterText">读取档案中</span>
+          <span id="modeText"></span>
+        </div>
+        <div class="achievement-grid" id="achievementGrid"></div>
+      </section>
+    </main>
+
+    <div class="modal-layer hidden" id="modalLayer" aria-hidden="true">
+      <section class="detail-card" role="dialog" aria-modal="true" aria-labelledby="detailTitle">
+        <button class="icon-button exit-button" id="closeDetailButton" type="button" aria-label="退出">×</button>
+        <label class="status-switch" title="切换达成状态">
+          <input id="statusSwitch" type="checkbox" />
+          <span class="switch-track"><span class="switch-thumb"></span></span>
+          <span id="statusText">未达成</span>
+        </label>
+
+        <div class="detail-scroll">
+          <div class="detail-image" id="detailImage"></div>
+          <div class="detail-body view-mode" id="detailView">
+            <h2 id="detailTitle"></h2>
+            <p class="detail-summary" id="detailSummary"></p>
+            <div class="detail-section">
+              <p class="section-label">达成条件</p>
+              <p id="detailCondition"></p>
+            </div>
+            <div class="detail-section">
+              <p class="section-label">达成时间</p>
+              <p id="detailAchievedAt"></p>
+            </div>
+          </div>
+
+          <form class="detail-body edit-mode hidden" id="detailForm">
+            <div class="image-edit-row">
+              <label class="file-button">
+                更换缩略图
+                <input id="thumbInput" type="file" accept="image/*" />
+              </label>
+              <label class="file-button">
+                更换大图
+                <input id="detailInput" type="file" accept="image/*" />
+              </label>
+            </div>
+            <label class="field">
+              <span>标题</span>
+              <input id="titleInput" type="text" autocomplete="off" />
+            </label>
+            <label class="field">
+              <span>一句描述</span>
+              <input id="summaryInput" type="text" autocomplete="off" />
+            </label>
+            <label class="field">
+              <span>达成条件</span>
+              <textarea id="conditionInput" rows="5"></textarea>
+            </label>
+            <label class="field">
+              <span>达成时间</span>
+              <input id="achievedAtInput" type="text" autocomplete="off" />
+            </label>
+          </form>
+        </div>
+
+        <div class="detail-footer">
+          <button class="action-button danger" id="deleteCurrentButton" type="button">删除</button>
+          <button class="action-button ghost hidden" id="discardEditButton" type="button">不保存退出编辑</button>
+          <button class="action-button hidden" id="saveEditButton" type="button">保存退出编辑</button>
+          <button class="action-button" id="editButton" type="button">修改</button>
+        </div>
+      </section>
+    </div>
+
+
+    <div class="letter-layer hidden" id="letterLayer" aria-hidden="true">
+      <section class="letter-card" role="dialog" aria-modal="true" aria-labelledby="letterTitle">
+        <p class="section-label">PLAYER MESSAGE</p>
+        <h2 id="letterTitle">给玩家的一封信</h2>
+        <div class="letter-body">
+          <p>玩家你好：</p>
+          <p>欢迎来到地球online成就殿堂。</p>
+          <p>这里没有标准答案，也没有必须完成的路线。你可以添加任何成就，也可以删除任何成就；你可以把一次微不足道的瞬间郑重收藏，也可以把别人眼中闪闪发光的大事轻轻放下。</p>
+          <p>因为你的人生不需要由系统判定，也不需要被某张榜单解释。你不是因为完成了什么才变得有意义，你的意义就在你本身。</p>
+          <p>那些相遇、选择、失败、重来，那些深夜里只有你知道的坚持，那些看似荒唐却真实发生过的片刻，都可以成为这场游戏的注脚。成就不是用来证明你配得上人生，而是用来提醒你：你确实来过，确实玩过，确实以自己的方式走到了这里。</p>
+          <p>所以，请随意编辑你的档案。把你认可的事写下来，把你想纪念的瞬间留下来。这不是世界给你的评分表，而是你写给自己的存档记录。</p>
+          <p>愿你在漫长而随机的地球服务器里，保留一点自由，一点幽默，一点不服输的心。祝你游戏人生，也祝你认真地成为自己。</p>
+        </div>
+        <div class="letter-actions">
+          <button class="action-button" id="closeLetterButton" type="button">收起</button>
+        </div>
+      </section>
+    </div>
+    <div class="confirm-layer hidden" id="confirmLayer" aria-hidden="true">
+      <section class="confirm-card" role="dialog" aria-modal="true">
+        <h2 id="confirmTitle">确认</h2>
+        <p id="confirmMessage"></p>
+        <div class="confirm-actions" id="confirmActions"></div>
+      </section>
+    </div>
+
+    <script src="/app.js"></script>
+  </body>
+</html>

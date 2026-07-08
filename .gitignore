@@ -1,0 +1,11 @@
+node_modules/
+dist/
+achievement-archive/
+__pycache__/
+.pytest_cache/
+*.pyc
+.test-archive*/
+.test-*/
+tmp/
+npm-debug.log*
+*.log

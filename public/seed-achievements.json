@@ -1,0 +1,437 @@
+{
+  "version": 1,
+  "achievements": [
+    {
+      "id": "seed-protagonist-arrives",
+      "title": "主角登场",
+      "summary": "创建角色成功，哭声即为登录音效。",
+      "condition": "来到地球服务器，开始本轮人生存档。",
+      "status": "locked",
+      "image": "/seed-assets/protagonist-arrives.svg",
+      "order": 1,
+      "tags": [
+        "默认成就"
+      ]
+    },
+    {
+      "id": "seed-run",
+      "title": "润",
+      "summary": "月亮怎么变圆了。",
+      "condition": "在外国定居。",
+      "status": "locked",
+      "image": "/seed-assets/run.svg",
+      "order": 2,
+      "tags": [
+        "默认成就"
+      ]
+    },
+    {
+      "id": "seed-wait-for-rise",
+      "title": "待涨",
+      "summary": "三千点能守住。",
+      "condition": "买的股票跌停至少一次。",
+      "status": "locked",
+      "image": "/seed-assets/wait-for-rise.svg",
+      "order": 3,
+      "tags": [
+        "默认成就"
+      ]
+    },
+    {
+      "id": "seed-you-cannot-outrun-me",
+      "title": "你跑不过我",
+      "summary": "嘴唇发红，可能是心脏太好了。",
+      "condition": "全程马拉松完赛至少一次。",
+      "status": "locked",
+      "image": "/seed-assets/you-cannot-outrun-me.svg",
+      "order": 4,
+      "tags": [
+        "默认成就"
+      ]
+    },
+    {
+      "id": "seed-real-or-fake-chef",
+      "title": "真假厨子说",
+      "summary": "摊点齁逼多，真假厨子说。",
+      "condition": "亲自下厨做饭。",
+      "status": "locked",
+      "image": "/seed-assets/real-or-fake-chef.svg",
+      "order": 5,
+      "tags": [
+        "默认成就"
+      ]
+    },
+    {
+      "id": "seed-hakimi",
+      "title": "哈基米",
+      "summary": "欧玛资立曼波。",
+      "condition": "拥有自己的猫。",
+      "status": "locked",
+      "image": "/seed-assets/hakimi.svg",
+      "order": 6,
+      "tags": [
+        "默认成就"
+      ]
+    },
+    {
+      "id": "seed-xiaochuan-heir",
+      "title": "笑川传人",
+      "summary": "你吼辣么大声干什么嘛。",
+      "condition": "替别人背锅一次。",
+      "status": "locked",
+      "image": "/seed-assets/xiaochuan-heir.svg",
+      "order": 7,
+      "tags": [
+        "默认成就"
+      ]
+    },
+    {
+      "id": "seed-numb-already",
+      "title": "早已麻痹",
+      "summary": "我早已麻痹。",
+      "condition": "公共场合大声骂人一次。",
+      "status": "locked",
+      "image": "/seed-assets/numb-already.svg",
+      "order": 8,
+      "tags": [
+        "默认成就"
+      ]
+    },
+    {
+      "id": "seed-human-traitor",
+      "title": "人奸",
+      "summary": "Sir AI, this way!",
+      "condition": "使用 AI 工具从而为 AI 训练提供数据集。",
+      "status": "locked",
+      "image": "/seed-assets/human-traitor.svg",
+      "order": 9,
+      "tags": [
+        "默认成就"
+      ]
+    },
+    {
+      "id": "seed-keyboard-politics",
+      "title": "键政",
+      "summary": "梨花飘落在你窗前。",
+      "condition": "在互联网发表政治话题相关评论一次。",
+      "status": "locked",
+      "image": "/seed-assets/keyboard-politics.svg",
+      "order": 10,
+      "tags": [
+        "默认成就"
+      ]
+    },
+    {
+      "id": "seed-too-beautiful",
+      "title": "只因你太美",
+      "summary": "再看一眼就会爆炸。",
+      "condition": "经历过一见钟情。",
+      "status": "locked",
+      "image": "/seed-assets/too-beautiful.svg",
+      "order": 11,
+      "tags": [
+        "默认成就"
+      ]
+    },
+    {
+      "id": "seed-library-at-dawn",
+      "title": "凌晨图书馆",
+      "summary": "你见过凌晨五点的图书馆吗。",
+      "condition": "为考试复习通宵一次。",
+      "status": "locked",
+      "image": "/seed-assets/library-at-dawn.svg",
+      "order": 12,
+      "tags": [
+        "默认成就"
+      ]
+    },
+    {
+      "id": "seed-drunkard",
+      "title": "酒蒙子",
+      "summary": "喝完酒地球是我的。",
+      "condition": "喝断片一次。",
+      "status": "locked",
+      "image": "/seed-assets/drunkard.svg",
+      "order": 13,
+      "tags": [
+        "默认成就"
+      ]
+    },
+    {
+      "id": "seed-language-pack",
+      "title": "语言包",
+      "summary": "我能用八国语言问候你。",
+      "condition": "掌握至少三门语言。",
+      "status": "locked",
+      "image": "/seed-assets/language-pack.svg",
+      "order": 14,
+      "tags": [
+        "默认成就"
+      ]
+    },
+    {
+      "id": "seed-enjoy-solitude",
+      "title": "享受孤独",
+      "summary": "一个人的夜我的心应该放在哪里。",
+      "condition": "一个人生活半年以上。",
+      "status": "locked",
+      "image": "/seed-assets/enjoy-solitude.svg",
+      "order": 15,
+      "tags": [
+        "默认成就"
+      ]
+    },
+    {
+      "id": "seed-load-save",
+      "title": "读档",
+      "summary": "还好存档了，再来一遍。",
+      "condition": "挑战失败后从头再来。",
+      "status": "locked",
+      "image": "/seed-assets/load-save.svg",
+      "order": 16,
+      "tags": [
+        "默认成就"
+      ]
+    },
+    {
+      "id": "seed-cyber-bodhisattva",
+      "title": "赛博菩萨",
+      "summary": "施主，链接已经放在评论区了。",
+      "condition": "给陌生人分享过资源、教程、经验或解决方案。",
+      "status": "locked",
+      "image": "/seed-assets/cyber-bodhisattva.svg",
+      "order": 17,
+      "tags": [
+        "默认成就"
+      ]
+    },
+    {
+      "id": "seed-chosen-worker",
+      "title": "天选打工人",
+      "summary": "工位是我的复活点，老板是每日 Boss。",
+      "condition": "经历过连续加班或一段高强度工作期。",
+      "status": "locked",
+      "image": "/seed-assets/chosen-worker.svg",
+      "order": 18,
+      "tags": [
+        "默认成就"
+      ]
+    },
+    {
+      "id": "seed-weather-child",
+      "title": "天气之子",
+      "summary": "出门即降雨，抬头即剧情。",
+      "condition": "没带伞时遇到大雨，或出行被天气狠狠制裁一次。",
+      "status": "locked",
+      "image": "/seed-assets/weather-child.svg",
+      "order": 19,
+      "tags": [
+        "默认成就"
+      ]
+    },
+    {
+      "id": "seed-awkward-immunity",
+      "title": "尴尬免疫",
+      "summary": "只要我不尴尬，尴尬就是环境特效。",
+      "condition": "经历一次尴尬事件后仍假装无事发生。",
+      "status": "locked",
+      "image": "/seed-assets/awkward-immunity.svg",
+      "order": 20,
+      "tags": [
+        "默认成就"
+      ]
+    },
+    {
+      "id": "seed-human-specimen",
+      "title": "人类观察样本",
+      "summary": "该 NPC 行为逻辑无法解释。",
+      "condition": "目睹一次非常离谱的人类行为。",
+      "status": "locked",
+      "image": "/seed-assets/human-specimen.svg",
+      "order": 21,
+      "tags": [
+        "默认成就"
+      ]
+    },
+    {
+      "id": "seed-reverse-sprint",
+      "title": "反向冲刺",
+      "summary": "截止线，也是起跑线。",
+      "condition": "在最后期限前极限完成一件事。",
+      "status": "locked",
+      "image": "/seed-assets/reverse-sprint.svg",
+      "order": 22,
+      "tags": [
+        "默认成就"
+      ]
+    },
+    {
+      "id": "seed-cyber-stall",
+      "title": "赛博摆摊",
+      "summary": "世界频道已开张，欢迎路过。",
+      "condition": "创建自媒体账号，并发布至少一条作品。",
+      "status": "locked",
+      "image": "/seed-assets/cyber-stall.svg",
+      "order": 23,
+      "tags": [
+        "默认成就"
+      ]
+    },
+    {
+      "id": "seed-family-supply",
+      "title": "家族补给箱",
+      "summary": "这次轮到我给出生点送装备。",
+      "condition": "为家人买过一次礼物。",
+      "status": "locked",
+      "image": "/seed-assets/family-supply.svg",
+      "order": 24,
+      "tags": [
+        "默认成就"
+      ]
+    },
+    {
+      "id": "seed-first-kiss-save",
+      "title": "初吻存档",
+      "summary": "触发事件后，背景音乐自动变大。",
+      "condition": "经历过初吻。",
+      "status": "locked",
+      "image": "/seed-assets/first-kiss-save.svg",
+      "order": 25,
+      "tags": [
+        "默认成就"
+      ]
+    },
+    {
+      "id": "seed-party-contract",
+      "title": "组队契约",
+      "summary": "双人模式已开启，掉线需协商。",
+      "condition": "结婚，或与伴侣建立长期共同生活关系。",
+      "status": "locked",
+      "image": "/seed-assets/party-contract.svg",
+      "order": 26,
+      "tags": [
+        "默认成就"
+      ]
+    },
+    {
+      "id": "seed-new-account",
+      "title": "新号注册",
+      "summary": "欢迎新玩家加入地球服务器。",
+      "condition": "拥有自己的孩子，或见证一个新生命进入家庭。",
+      "status": "locked",
+      "image": "/seed-assets/new-account.svg",
+      "order": 27,
+      "tags": [
+        "默认成就"
+      ]
+    },
+    {
+      "id": "seed-meteor-check",
+      "title": "流星判定",
+      "summary": "许愿窗口只开放了 0.8 秒。",
+      "condition": "亲眼看到一次流星。",
+      "status": "locked",
+      "image": "/seed-assets/meteor-check.svg",
+      "order": 28,
+      "tags": [
+        "默认成就"
+      ]
+    },
+    {
+      "id": "seed-deep-sea-loading",
+      "title": "深海加载中",
+      "summary": "氧气条出现了，恐惧也出现了。",
+      "condition": "尝试过一次潜水。",
+      "status": "locked",
+      "image": "/seed-assets/deep-sea-loading.svg",
+      "order": 29,
+      "tags": [
+        "默认成就"
+      ]
+    },
+    {
+      "id": "seed-skyfall-protection",
+      "title": "高空掉落保护",
+      "summary": "你从天上下来，并且还能吹牛。",
+      "condition": "尝试过一次跳伞。",
+      "status": "locked",
+      "image": "/seed-assets/skyfall-protection.svg",
+      "order": 30,
+      "tags": [
+        "默认成就"
+      ]
+    },
+    {
+      "id": "seed-one-hp-counterkill",
+      "title": "丝血反杀",
+      "summary": "我命由我不由天。",
+      "condition": "经历濒死体验并活过来。",
+      "status": "locked",
+      "image": "/seed-assets/one-hp-counterkill.svg",
+      "order": 31,
+      "tags": [
+        "默认成就"
+      ]
+    },
+    {
+      "id": "seed-heal-the-team",
+      "title": "奶一口",
+      "summary": "给队友回血是专业的。",
+      "condition": "帮家人或朋友渡过难关。",
+      "status": "locked",
+      "image": "/seed-assets/heal-the-team.svg",
+      "order": 32,
+      "tags": [
+        "默认成就"
+      ]
+    },
+    {
+      "id": "seed-one-hit-short",
+      "title": "还差一刀",
+      "summary": "你已超过 99% 的用户，即将提现。",
+      "condition": "离成功只差一步但失败了。",
+      "status": "locked",
+      "image": "/seed-assets/one-hit-short.svg",
+      "order": 33,
+      "tags": [
+        "默认成就"
+      ]
+    },
+    {
+      "id": "seed-extraction-success",
+      "title": "撤离成功",
+      "summary": "跑刀还是堵桥？",
+      "condition": "经历战争并存活。",
+      "status": "locked",
+      "image": "/seed-assets/extraction-success.svg",
+      "order": 34,
+      "tags": [
+        "默认成就"
+      ]
+    },
+    {
+      "id": "seed-spaceman",
+      "title": "太空人",
+      "summary": "Oh, I'm floating in space!",
+      "condition": "进入太空一次。",
+      "status": "locked",
+      "image": "/seed-assets/spaceman.svg",
+      "order": 35,
+      "tags": [
+        "默认成就"
+      ]
+    },
+    {
+      "id": "seed-bought-a-watch",
+      "title": "买了个表",
+      "summary": "我去年买了个表。",
+      "condition": "购买一次奢侈品。",
+      "status": "locked",
+      "image": "/seed-assets/bought-a-watch.svg",
+      "order": 36,
+      "tags": [
+        "默认成就"
+      ]
+    }
+  ]
+}
