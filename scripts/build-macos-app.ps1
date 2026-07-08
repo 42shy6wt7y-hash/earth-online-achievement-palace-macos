@@ -14,8 +14,10 @@ $contents = Join-Path $appRoot "Contents"
 $macos = Join-Path $contents "MacOS"
 $resources = Join-Path $contents "Resources"
 $runtime = Join-Path $resources "runtime"
-$archiveName = "EarthOnlineAchievementPalace-macOS-universal.tar.gz"
-$archivePath = Join-Path $dist $archiveName
+$tarArchiveName = "EarthOnlineAchievementPalace-macOS-universal.tar.gz"
+$tarArchivePath = Join-Path $dist $tarArchiveName
+$zipArchiveName = "EarthOnlineAchievementPalace-macOS-universal.zip"
+$zipArchivePath = Join-Path $dist $zipArchiveName
 
 Remove-Item -Recurse -Force $dist, $payload -ErrorAction SilentlyContinue
 New-Item -ItemType Directory -Force -Path $dist, $tempRoot, $macos, $resources, $runtime | Out-Null
@@ -92,7 +94,7 @@ $readme = @(
   '地球online成就殿堂 macOS 通用版'
   ''
   '使用方式：'
-  '1. 解压 tar.gz。'
+  '1. 解压 zip。'
   '2. 把“地球online成就殿堂.app”拖到“应用程序”文件夹，或直接双击打开。'
   '3. 如果 macOS 提示来自未认证开发者，请在 Finder 中右键 App，选择“打开”，再确认打开。'
   ''
@@ -114,10 +116,16 @@ if (-not $python) {
   throw "Cannot find Python to create a macOS permission-preserving tar.gz."
 }
 
-& $python (Join-Path $PSScriptRoot "pack_macos_tar.py") $payload $archivePath
-if (-not (Test-Path -LiteralPath $archivePath)) {
-  throw "macOS archive was not created: $archivePath"
+& $python (Join-Path $PSScriptRoot "pack_macos_tar.py") $payload $tarArchivePath
+if (-not (Test-Path -LiteralPath $tarArchivePath)) {
+  throw "macOS tar archive was not created: $tarArchivePath"
 }
 
-Write-Host "Created $archivePath"
+& $python (Join-Path $PSScriptRoot "pack_macos_zip.py") $payload $zipArchivePath
+if (-not (Test-Path -LiteralPath $zipArchivePath)) {
+  throw "macOS zip archive was not created: $zipArchivePath"
+}
+
+Write-Host "Created $tarArchivePath"
+Write-Host "Created $zipArchivePath"
 

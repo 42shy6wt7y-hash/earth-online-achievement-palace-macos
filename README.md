@@ -4,7 +4,7 @@
 
 ## 普通用户
 
-下载发布页里的 `EarthOnlineAchievementPalace-macOS-universal.tar.gz`，解压后得到：
+下载发布页里的 `EarthOnlineAchievementPalace-macOS-universal.zip`，双击解压后得到：
 
 ```text
 地球online成就殿堂.app
@@ -63,6 +63,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File scripts/build-macos-app.ps1
 产物会生成在：
 
 ```text
+dist/EarthOnlineAchievementPalace-macOS-universal.zip
 dist/EarthOnlineAchievementPalace-macOS-universal.tar.gz
 ```
 

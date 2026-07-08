@@ -13,7 +13,7 @@
 
 ## macOS 说明
 
-- 下载 `EarthOnlineAchievementPalace-macOS-universal.tar.gz`。
+- 推荐下载 `EarthOnlineAchievementPalace-macOS-universal.zip`。
 - 解压后得到 `地球online成就殿堂.app`。
 - 首次打开如果 macOS 提示来自未认证开发者，请右键 App，选择“打开”，再确认打开。
 - 档案保存在 `~/Library/Application Support/EarthOnlineAchievementPalaceMac/achievement-archive`。
