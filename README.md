@@ -4,15 +4,40 @@
 
 ## 普通用户
 
-下载发布页里的 `EarthOnlineAchievementPalace-macOS-universal.zip`，双击解压后得到：
+下载发布页里的 `EarthOnlineAchievementPalace-macOS-universal.zip`。
+
+### 最快直接玩
+
+1. 打开 Finder。
+2. 左边点“下载”。
+3. 找到 `EarthOnlineAchievementPalace-macOS-universal.zip`。
+4. 双击这个 zip，旁边会解压出：
 
 ```text
 地球online成就殿堂.app
 ```
 
-可以直接双击打开，也可以拖到“应用程序”文件夹。
+5. 双击 `地球online成就殿堂.app` 就可以打开。
 
-因为这一版是在 Windows 环境里构建的未签名、未公证版本，macOS 首次打开时可能提示来自未认证开发者。遇到这种提示时，在 Finder 中右键 `地球online成就殿堂.app`，选择“打开”，再确认打开即可。
+### 推荐装到应用程序
+
+1. 打开 Finder。
+2. 左边点“下载”。
+3. 把解压出来的 `地球online成就殿堂.app` 拖到 Finder 左边的“应用程序”。
+4. 以后可以从“应用程序”或 Launchpad 里打开。
+
+### 第一次打不开怎么办
+
+因为这一版是在 Windows 环境里构建的未签名、未公证版本，macOS 首次打开时可能提示来自未认证开发者。
+
+遇到这种提示时：
+
+1. 在 Finder 里找到 `地球online成就殿堂.app`。
+2. 右键这个 App。
+3. 选择“打开”。
+4. 再确认一次“打开”。
+
+确认一次以后，后面通常就可以直接双击打开。
 
 应用会在本机启动一个只监听 `127.0.0.1` 的本地服务，然后用默认浏览器打开页面。不需要联网，不需要服务器。
 

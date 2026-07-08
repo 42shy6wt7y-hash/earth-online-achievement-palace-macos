@@ -14,8 +14,10 @@
 ## macOS 说明
 
 - 推荐下载 `EarthOnlineAchievementPalace-macOS-universal.zip`。
-- 解压后得到 `地球online成就殿堂.app`。
-- 首次打开如果 macOS 提示来自未认证开发者，请右键 App，选择“打开”，再确认打开。
+- 打开 Finder，左边点“下载”，双击 zip，旁边会解压出 `地球online成就殿堂.app`。
+- 可以直接双击这个 App 使用。
+- 想以后更方便，就把 `地球online成就殿堂.app` 从“下载”拖到 Finder 左边的“应用程序”，之后从“应用程序”或 Launchpad 打开。
+- 首次打开如果 macOS 提示来自未认证开发者，请在 Finder 里右键 App，选择“打开”，再确认打开。
 - 档案保存在 `~/Library/Application Support/EarthOnlineAchievementPalaceMac/achievement-archive`。
 - 本地端口段为 `3417..3499`。
 
