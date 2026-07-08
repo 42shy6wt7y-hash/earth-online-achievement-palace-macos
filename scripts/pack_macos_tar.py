@@ -14,7 +14,7 @@ def mode_for(arcname, is_dir):
     arcname = normalize(arcname)
     if is_dir:
         return 0o755
-    if arcname.endswith("/Contents/MacOS/地球online成就殿堂"):
+    if arcname.endswith("/Contents/MacOS/EarthOnlineAchievementPalace"):
         return 0o755
     if arcname.endswith("/Resources/launch-earth-online-achievement-palace.command"):
         return 0o755

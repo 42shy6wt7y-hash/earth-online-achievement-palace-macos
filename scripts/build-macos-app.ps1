@@ -9,6 +9,7 @@ $dist = Join-Path $root "dist"
 $tempRoot = Join-Path $env:TEMP "eoap-macos-build"
 $payload = Join-Path $tempRoot "payload"
 $appName = "地球online成就殿堂.app"
+$executableName = "EarthOnlineAchievementPalace"
 $appRoot = Join-Path $payload $appName
 $contents = Join-Path $appRoot "Contents"
 $macos = Join-Path $contents "MacOS"
@@ -16,11 +17,21 @@ $resources = Join-Path $contents "Resources"
 $runtime = Join-Path $resources "runtime"
 $tarArchiveName = "EarthOnlineAchievementPalace-macOS-universal.tar.gz"
 $tarArchivePath = Join-Path $dist $tarArchiveName
-$zipArchiveName = "EarthOnlineAchievementPalace-macOS-universal.zip"
-$zipArchivePath = Join-Path $dist $zipArchiveName
 
 Remove-Item -Recurse -Force $dist, $payload -ErrorAction SilentlyContinue
 New-Item -ItemType Directory -Force -Path $dist, $tempRoot, $macos, $resources, $runtime | Out-Null
+
+function Write-Utf8NoBomLf([string]$Path, [string[]]$Lines) {
+  $encoding = New-Object System.Text.UTF8Encoding($false)
+  [System.IO.File]::WriteAllText($Path, ($Lines -join "`n") + "`n", $encoding)
+}
+
+function Normalize-Utf8NoBomLf([string]$Path) {
+  $encoding = New-Object System.Text.UTF8Encoding($false)
+  $content = [System.IO.File]::ReadAllText($Path)
+  $content = $content.TrimStart([char]0xFEFF).Replace("`r`n", "`n").Replace("`r", "`n")
+  [System.IO.File]::WriteAllText($Path, $content, $encoding)
+}
 
 function Add-NodeRuntime([string]$Arch) {
   $nodeArchive = "node-$NodeVersion-darwin-$Arch.tar.gz"
@@ -60,42 +71,41 @@ Copy-Item -LiteralPath (Join-Path $root "server.js") -Destination $resources
 Copy-Item -LiteralPath (Join-Path $root "README.md") -Destination $resources
 Copy-Item -LiteralPath (Join-Path $root "public") -Destination $resources -Recurse
 Copy-Item -LiteralPath (Join-Path $root "launch-earth-online-achievement-palace.command") -Destination $resources
+Normalize-Utf8NoBomLf (Join-Path $resources "launch-earth-online-achievement-palace.command")
 
-$mainExecutable = @(
+Write-Utf8NoBomLf (Join-Path $macos $executableName) @(
   '#!/bin/bash'
   'set -euo pipefail'
   'SCRIPT_DIR="$(cd "$(dirname "$0")/../Resources" && pwd)"'
   'exec "$SCRIPT_DIR/launch-earth-online-achievement-palace.command"'
-) -join [Environment]::NewLine
-Set-Content -LiteralPath (Join-Path $macos "地球online成就殿堂") -Value $mainExecutable -Encoding UTF8
+)
 
-$plist = @(
+Write-Utf8NoBomLf (Join-Path $contents "Info.plist") @(
   '<?xml version="1.0" encoding="UTF-8"?>'
   '<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">'
   '<plist version="1.0">'
   '<dict>'
   '  <key>CFBundleDevelopmentRegion</key><string>zh_CN</string>'
   '  <key>CFBundleDisplayName</key><string>地球online成就殿堂</string>'
-  '  <key>CFBundleExecutable</key><string>地球online成就殿堂</string>'
+  "  <key>CFBundleExecutable</key><string>$executableName</string>"
   '  <key>CFBundleIdentifier</key><string>com.earthonline.achievementpalace.macos</string>'
   '  <key>CFBundleInfoDictionaryVersion</key><string>6.0</string>'
   '  <key>CFBundleName</key><string>地球online成就殿堂</string>'
   '  <key>CFBundlePackageType</key><string>APPL</string>'
-  '  <key>CFBundleShortVersionString</key><string>0.2.4</string>'
-  '  <key>CFBundleVersion</key><string>0.2.4</string>'
+  '  <key>CFBundleShortVersionString</key><string>0.2.5</string>'
+  '  <key>CFBundleVersion</key><string>0.2.5</string>'
   '  <key>LSMinimumSystemVersion</key><string>11.0</string>'
   '  <key>NSHighResolutionCapable</key><true/>'
   '</dict>'
   '</plist>'
-) -join [Environment]::NewLine
-Set-Content -LiteralPath (Join-Path $contents "Info.plist") -Value $plist -Encoding UTF8
+)
 
-$readme = @(
+Write-Utf8NoBomLf (Join-Path $payload "README-macOS.txt") @(
   '地球online成就殿堂 macOS 通用版'
   ''
   '使用方式：'
   '1. 打开 Finder，左边点“下载”。'
-  '2. 双击 EarthOnlineAchievementPalace-macOS-universal.zip，旁边会解压出“地球online成就殿堂.app”。'
+  '2. 双击 EarthOnlineAchievementPalace-macOS-universal.tar.gz，旁边会解压出“地球online成就殿堂.app”。'
   '3. 可以直接双击“地球online成就殿堂.app”使用。'
   '4. 想以后更方便，就把“地球online成就殿堂.app”从“下载”拖到 Finder 左边的“应用程序”。'
   '5. 以后可以从“应用程序”或 Launchpad 打开。'
@@ -108,8 +118,7 @@ $readme = @(
   '- 成就档案保存在 ~/Library/Application Support/EarthOnlineAchievementPalaceMac/achievement-archive。'
   '- 本地服务使用 3417..3499 端口段。'
   '- 包内自带 macOS arm64 和 x64 Node.js 运行时，适合 Apple Silicon 和 Intel Mac。'
-) -join [Environment]::NewLine
-Set-Content -LiteralPath (Join-Path $payload "README-macOS.txt") -Value $readme -Encoding UTF8
+)
 
 $pythonCommand = Get-Command python -ErrorAction SilentlyContinue
 $python = if ($pythonCommand) { $pythonCommand.Source } else { $null }
@@ -126,11 +135,5 @@ if (-not (Test-Path -LiteralPath $tarArchivePath)) {
   throw "macOS tar archive was not created: $tarArchivePath"
 }
 
-& $python (Join-Path $PSScriptRoot "pack_macos_zip.py") $payload $zipArchivePath
-if (-not (Test-Path -LiteralPath $zipArchivePath)) {
-  throw "macOS zip archive was not created: $zipArchivePath"
-}
-
 Write-Host "Created $tarArchivePath"
-Write-Host "Created $zipArchivePath"
 

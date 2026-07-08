@@ -4,14 +4,14 @@
 
 ## 普通用户
 
-下载发布页里的 `EarthOnlineAchievementPalace-macOS-universal.zip`。
+下载发布页里的 `EarthOnlineAchievementPalace-macOS-universal.tar.gz`。
 
 ### 最快直接玩
 
 1. 打开 Finder。
 2. 左边点“下载”。
-3. 找到 `EarthOnlineAchievementPalace-macOS-universal.zip`。
-4. 双击这个 zip，旁边会解压出：
+3. 找到 `EarthOnlineAchievementPalace-macOS-universal.tar.gz`。
+4. 双击这个压缩包，旁边会解压出：
 
 ```text
 地球online成就殿堂.app
@@ -88,7 +88,6 @@ powershell -NoProfile -ExecutionPolicy Bypass -File scripts/build-macos-app.ps1
 产物会生成在：
 
 ```text
-dist/EarthOnlineAchievementPalace-macOS-universal.zip
 dist/EarthOnlineAchievementPalace-macOS-universal.tar.gz
 ```
 
