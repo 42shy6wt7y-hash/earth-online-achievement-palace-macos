@@ -1,6 +1,6 @@
 {
   "name": "earth-online-achievement-palace-macos",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "private": true,
   "description": "A macOS local-first black-gold achievement palace for Earth Online life records.",
   "main": "server.js",

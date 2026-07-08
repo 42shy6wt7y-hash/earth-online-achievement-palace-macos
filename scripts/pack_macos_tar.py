@@ -18,6 +18,8 @@ def mode_for(arcname, is_dir):
         return 0o755
     if arcname.endswith("/Resources/launch-earth-online-achievement-palace.command"):
         return 0o755
+    if arcname == "Start-EarthOnlineAchievementPalace.command":
+        return 0o755
     if "/Resources/runtime/" in arcname and arcname.endswith("/bin/node"):
         return 0o755
     return 0o644

@@ -92,8 +92,8 @@ Write-Utf8NoBomLf (Join-Path $contents "Info.plist") @(
   '  <key>CFBundleInfoDictionaryVersion</key><string>6.0</string>'
   '  <key>CFBundleName</key><string>地球online成就殿堂</string>'
   '  <key>CFBundlePackageType</key><string>APPL</string>'
-  '  <key>CFBundleShortVersionString</key><string>0.2.5</string>'
-  '  <key>CFBundleVersion</key><string>0.2.5</string>'
+  '  <key>CFBundleShortVersionString</key><string>0.2.6</string>'
+  '  <key>CFBundleVersion</key><string>0.2.6</string>'
   '  <key>LSMinimumSystemVersion</key><string>11.0</string>'
   '  <key>NSHighResolutionCapable</key><true/>'
   '</dict>'
@@ -113,11 +113,21 @@ Write-Utf8NoBomLf (Join-Path $payload "README-macOS.txt") @(
   '第一次打不开怎么办：'
   '如果 macOS 提示来自未认证开发者，请在 Finder 里右键“地球online成就殿堂.app”，选择“打开”，再确认打开。'
   ''
+  '备用启动：'
+  '如果 App 图标仍然打不开，请双击同一目录里的 Start-EarthOnlineAchievementPalace.command。它会打开一个终端窗口并启动同一个本地应用。'
+  ''
   '说明：'
   '- 这是未签名、未公证的本地离线版。'
   '- 成就档案保存在 ~/Library/Application Support/EarthOnlineAchievementPalaceMac/achievement-archive。'
   '- 本地服务使用 3417..3499 端口段。'
   '- 包内自带 macOS arm64 和 x64 Node.js 运行时，适合 Apple Silicon 和 Intel Mac。'
+)
+
+Write-Utf8NoBomLf (Join-Path $payload "Start-EarthOnlineAchievementPalace.command") @(
+  '#!/bin/bash'
+  'set -euo pipefail'
+  'BASE_DIR="$(cd "$(dirname "$0")" && pwd)"'
+  'exec "$BASE_DIR/地球online成就殿堂.app/Contents/Resources/launch-earth-online-achievement-palace.command"'
 )
 
 $pythonCommand = Get-Command python -ErrorAction SilentlyContinue
