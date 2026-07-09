@@ -13,7 +13,23 @@ const EVENTS_DIR = path.join(ARCHIVE_DIR, "events");
 const ASSETS_DIR = path.join(ARCHIVE_DIR, "assets");
 const SEED_FILE = path.join(PUBLIC_DIR, "seed-achievements.json");
 const SEED_DONE_FILE = path.join(ARCHIVE_DIR, "seed-default-achievements-v1.done");
+const SEED_EXPANSION_DONE_FILE = path.join(ARCHIVE_DIR, "seed-default-achievements-v2.done");
 const PORT = Number(process.env.PORT || 3417);
+
+const EXPANDED_DEFAULT_SEED_IDS = new Set([
+  "seed-wealth-freedom",
+  "seed-wind-urges-rain",
+  "seed-renovation-quest",
+  "seed-global-foodie",
+  "seed-apple-life",
+  "seed-air-incident",
+  "seed-own-car",
+  "seed-midnight-protocol",
+  "seed-small-clique",
+  "seed-pure-love-warrior",
+  "seed-world-channel-speech",
+  "seed-became-boss"
+]);
 
 const MIME = {
   ".html": "text/html; charset=utf-8",
@@ -152,52 +168,98 @@ async function copySeedImage(seed, achievementId) {
   return `/archive/assets/${encodeURIComponent(achievementId)}/${encodeURIComponent(targetName)}`;
 }
 
-async function ensureSeedAchievements() {
-  await ensureArchive();
-  if (await fileExists(SEED_DONE_FILE)) return;
+async function achievementFromSeed(seed, createdAt) {
+  const achievement = emptyAchievement("locked");
+  achievement.id = seed.id || achievement.id;
+  const imagePath = await copySeedImage(seed, achievement.id);
+  achievement.status = "locked";
+  achievement.title = String(seed.title ?? "");
+  achievement.summary = String(seed.summary ?? "");
+  achievement.condition = String(seed.condition ?? "");
+  achievement.achievedAt = "";
+  achievement.thumbImage = imagePath;
+  achievement.detailImage = imagePath;
+  achievement.tags = Array.isArray(seed.tags) ? seed.tags : [];
+  achievement.createdAt = createdAt;
+  achievement.updatedAt = createdAt;
+  return achievement;
+}
 
-  const existingEvents = await listEventFiles();
-  if (existingEvents.length) {
-    await fs.writeFile(SEED_DONE_FILE, `${JSON.stringify({
-      version: 1,
-      seeded: false,
-      reason: "archive-not-empty",
-      createdAt: new Date().toISOString()
-    }, null, 2)}\n`, "utf8");
+async function writeSeedExpansionDone(payload) {
+  await fs.writeFile(SEED_EXPANSION_DONE_FILE, `${JSON.stringify({
+    version: 2,
+    createdAt: new Date().toISOString(),
+    ...payload
+  }, null, 2)}\n`, "utf8");
+}
+
+async function ensureExpandedSeedAchievements(seeds) {
+  if (await fileExists(SEED_EXPANSION_DONE_FILE)) return;
+
+  const expansionSeeds = seeds.filter((seed) => EXPANDED_DEFAULT_SEED_IDS.has(seed.id));
+  if (!expansionSeeds.length) {
+    await writeSeedExpansionDone({ seeded: false, count: 0, reason: "no-expansion-seeds" });
     return;
   }
 
-  const seedConfig = JSON.parse(await fs.readFile(SEED_FILE, "utf8"));
-  const seeds = Array.isArray(seedConfig.achievements) ? seedConfig.achievements : [];
-  const baseTime = Date.now();
+  const existingAchievements = await buildState({ includeDeleted: true });
+  const existingIds = new Set(existingAchievements.map((achievement) => achievement.id));
+  const missingSeeds = expansionSeeds.filter((seed) => !existingIds.has(seed.id));
 
-  for (let index = 0; index < seeds.length; index += 1) {
-    const seed = seeds[index];
-    const achievement = emptyAchievement("locked");
-    const createdAt = new Date(baseTime + (seeds.length - index) * 1000).toISOString();
+  if (!missingSeeds.length) {
+    await writeSeedExpansionDone({ seeded: false, count: 0, reason: "already-present" });
+    return;
+  }
 
-    achievement.id = seed.id || achievement.id;
-    const imagePath = await copySeedImage(seed, achievement.id);
-    achievement.status = "locked";
-    achievement.title = String(seed.title ?? "");
-    achievement.summary = String(seed.summary ?? "");
-    achievement.condition = String(seed.condition ?? "");
-    achievement.achievedAt = "";
-    achievement.thumbImage = imagePath;
-    achievement.detailImage = imagePath;
-    achievement.tags = Array.isArray(seed.tags) ? seed.tags : [];
-    achievement.createdAt = createdAt;
-    achievement.updatedAt = createdAt;
+  const times = existingAchievements
+    .map((achievement) => Date.parse(achievement.createdAt || ""))
+    .filter((time) => Number.isFinite(time));
+  const baseTime = (times.length ? Math.min(...times) : Date.now()) - 1000;
 
+  for (let index = 0; index < missingSeeds.length; index += 1) {
+    const seed = missingSeeds[index];
+    const createdAt = new Date(baseTime - index * 1000).toISOString();
+    const achievement = await achievementFromSeed(seed, createdAt);
     await appendEvent("create", { achievement });
   }
 
-  await fs.writeFile(SEED_DONE_FILE, `${JSON.stringify({
-    version: seedConfig.version || 1,
-    seeded: true,
-    count: seeds.length,
-    createdAt: new Date().toISOString()
-  }, null, 2)}\n`, "utf8");
+  await writeSeedExpansionDone({ seeded: true, count: missingSeeds.length });
+}
+
+async function ensureSeedAchievements() {
+  await ensureArchive();
+  const seedConfig = JSON.parse(await fs.readFile(SEED_FILE, "utf8"));
+  const seeds = Array.isArray(seedConfig.achievements) ? seedConfig.achievements : [];
+
+  if (!(await fileExists(SEED_DONE_FILE))) {
+    const existingEvents = await listEventFiles();
+    if (existingEvents.length) {
+      await fs.writeFile(SEED_DONE_FILE, `${JSON.stringify({
+        version: 1,
+        seeded: false,
+        reason: "archive-not-empty",
+        createdAt: new Date().toISOString()
+      }, null, 2)}\n`, "utf8");
+    } else {
+      const baseTime = Date.now();
+
+      for (let index = 0; index < seeds.length; index += 1) {
+        const seed = seeds[index];
+        const createdAt = new Date(baseTime + (seeds.length - index) * 1000).toISOString();
+        const achievement = await achievementFromSeed(seed, createdAt);
+        await appendEvent("create", { achievement });
+      }
+
+      await fs.writeFile(SEED_DONE_FILE, `${JSON.stringify({
+        version: seedConfig.version || 1,
+        seeded: true,
+        count: seeds.length,
+        createdAt: new Date().toISOString()
+      }, null, 2)}\n`, "utf8");
+    }
+  }
+
+  await ensureExpandedSeedAchievements(seeds);
 }
 
 async function readEvents() {

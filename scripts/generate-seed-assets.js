@@ -147,5 +147,5 @@ const seed = achievements.map(([slug, title, summary, condition, icon], index) =
   };
 });
 
-fs.writeFileSync(seedFile, `${JSON.stringify({ version: 1, achievements: seed }, null, 2)}\n`, "utf8");
+fs.writeFileSync(seedFile, `${JSON.stringify({ version: 2, achievements: seed }, null, 2)}\n`, "utf8");
 console.log(`Generated ${seed.length} seed achievements.`);
