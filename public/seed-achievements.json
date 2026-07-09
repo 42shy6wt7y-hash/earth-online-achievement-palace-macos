@@ -432,6 +432,150 @@
       "tags": [
         "默认成就"
       ]
+    },
+    {
+      "id": "seed-wealth-freedom",
+      "title": "财富自由",
+      "summary": "金币不再决定你的刷新点。",
+      "condition": "实现财富自由，生活开支不再主要依赖主动工作收入。",
+      "status": "locked",
+      "image": "/seed-assets/wealth-freedom.svg",
+      "order": 37,
+      "tags": [
+        "默认成就"
+      ]
+    },
+    {
+      "id": "seed-wind-urges-rain",
+      "title": "风催雨",
+      "summary": "雨夜带刀不带伞。",
+      "condition": "经历过一次台风。",
+      "status": "locked",
+      "image": "/seed-assets/wind-urges-rain.svg",
+      "order": 38,
+      "tags": [
+        "默认成就"
+      ]
+    },
+    {
+      "id": "seed-renovation-quest",
+      "title": "基建狂魔",
+      "summary": "把毛坯副本刷成了出生点。",
+      "condition": "装修过一次房子。",
+      "status": "locked",
+      "image": "/seed-assets/renovation-quest.svg",
+      "order": 39,
+      "tags": [
+        "默认成就"
+      ]
+    },
+    {
+      "id": "seed-global-foodie",
+      "title": "环球食客",
+      "summary": "舌尖加载了二十个服务器。",
+      "condition": "吃过 20 个国家的特色菜。",
+      "status": "locked",
+      "image": "/seed-assets/global-foodie.svg",
+      "order": 40,
+      "tags": [
+        "默认成就"
+      ]
+    },
+    {
+      "id": "seed-apple-life",
+      "title": "享苹果人生",
+      "summary": "购买力越来越苹果，爆赞。",
+      "condition": "拥有六个及以上不同品类的 Apple 产品。",
+      "status": "locked",
+      "image": "/seed-assets/apple-life.svg",
+      "order": 41,
+      "tags": [
+        "默认成就"
+      ]
+    },
+    {
+      "id": "seed-air-incident",
+      "title": "空难",
+      "summary": "天要下雨，娘要嫁人，随他去吧。",
+      "condition": "亲历过飞机故障或事故。",
+      "status": "locked",
+      "image": "/seed-assets/air-incident.svg",
+      "order": 42,
+      "tags": [
+        "默认成就"
+      ]
+    },
+    {
+      "id": "seed-own-car",
+      "title": "方向盘已绑定",
+      "summary": "载具已解锁，地图变大了。",
+      "condition": "拥有自己的汽车。",
+      "status": "locked",
+      "image": "/seed-assets/own-car.svg",
+      "order": 43,
+      "tags": [
+        "默认成就"
+      ]
+    },
+    {
+      "id": "seed-midnight-protocol",
+      "title": "午夜条例",
+      "summary": "这段剧情不进公共存档。",
+      "condition": "有过小众的性体验。",
+      "status": "locked",
+      "image": "/seed-assets/midnight-protocol.svg",
+      "order": 44,
+      "tags": [
+        "默认成就"
+      ]
+    },
+    {
+      "id": "seed-small-clique",
+      "title": "小团体",
+      "summary": "构成一个完全子图。",
+      "condition": "与多个人互相两两为朋友。",
+      "status": "locked",
+      "image": "/seed-assets/small-clique.svg",
+      "order": 45,
+      "tags": [
+        "默认成就"
+      ]
+    },
+    {
+      "id": "seed-pure-love-warrior",
+      "title": "纯爱战士",
+      "summary": "第一位恋人，也是最后一位。",
+      "condition": "终生只拥有一段恋情。",
+      "status": "locked",
+      "image": "/seed-assets/pure-love-warrior.svg",
+      "order": 46,
+      "tags": [
+        "默认成就"
+      ]
+    },
+    {
+      "id": "seed-world-channel-speech",
+      "title": "世界频道发言",
+      "summary": "麦克风已接入全人类频道。",
+      "condition": "在联合国进行过演讲。",
+      "status": "locked",
+      "image": "/seed-assets/world-channel-speech.svg",
+      "order": 47,
+      "tags": [
+        "默认成就"
+      ]
+    },
+    {
+      "id": "seed-became-boss",
+      "title": "我成 boss 了",
+      "summary": "You are fired.",
+      "condition": "成为一家公司的实际控制人。",
+      "status": "locked",
+      "image": "/seed-assets/became-boss.svg",
+      "order": 48,
+      "tags": [
+        "默认成就"
+      ]
     }
   ]
 }

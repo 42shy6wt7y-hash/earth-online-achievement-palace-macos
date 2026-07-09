@@ -41,7 +41,19 @@ const achievements = [
   ["one-hit-short", "还差一刀", "你已超过 99% 的用户，即将提现。", "离成功只差一步但失败了。", "sword"],
   ["extraction-success", "撤离成功", "跑刀还是堵桥？", "经历战争并存活。", "evac"],
   ["spaceman", "太空人", "Oh, I'm floating in space!", "进入太空一次。", "astronaut"],
-  ["bought-a-watch", "买了个表", "我去年买了个表。", "购买一次奢侈品。", "watch"]
+  ["bought-a-watch", "买了个表", "我去年买了个表。", "购买一次奢侈品。", "watch"],
+  ["wealth-freedom", "财富自由", "金币不再决定你的刷新点。", "实现财富自由，生活开支不再主要依赖主动工作收入。", "wealth"],
+  ["wind-urges-rain", "风催雨", "雨夜带刀不带伞。", "经历过一次台风。", "typhoon"],
+  ["renovation-quest", "基建狂魔", "把毛坯副本刷成了出生点。", "装修过一次房子。", "renovation"],
+  ["global-foodie", "环球食客", "舌尖加载了二十个服务器。", "吃过 20 个国家的特色菜。", "cuisine"],
+  ["apple-life", "享苹果人生", "购买力越来越苹果，爆赞。", "拥有六个及以上不同品类的 Apple 产品。", "applelife"],
+  ["air-incident", "空难", "天要下雨，娘要嫁人，随他去吧。", "亲历过飞机故障或事故。", "airincident"],
+  ["own-car", "方向盘已绑定", "载具已解锁，地图变大了。", "拥有自己的汽车。", "car"],
+  ["midnight-protocol", "午夜条例", "这段剧情不进公共存档。", "有过小众的性体验。", "midnight"],
+  ["small-clique", "小团体", "构成一个完全子图。", "与多个人互相两两为朋友。", "clique"],
+  ["pure-love-warrior", "纯爱战士", "第一位恋人，也是最后一位。", "终生只拥有一段恋情。", "purelove"],
+  ["world-channel-speech", "世界频道发言", "麦克风已接入全人类频道。", "在联合国进行过演讲。", "unspeech"],
+  ["became-boss", "我成 boss 了", "You are fired.", "成为一家公司的实际控制人。", "boss"]
 ];
 
 const iconMap = {
@@ -80,7 +92,19 @@ const iconMap = {
   sword: '<path d="M176 62l-58 83" fill="none"/><path d="M95 168l22-22 18 18-22 22z"/><path d="M77 185l34-34" fill="none"/><path d="M160 71l31-9-9 31"/>',
   evac: '<path d="M66 173h124" fill="none"/><path d="M85 154l35-52 35 52z"/><path d="M57 96h78" fill="none"/><path d="M108 78l27 18-27 18" fill="none"/>',
   astronaut: '<circle cx="128" cy="112" r="42"/><rect x="88" y="93" width="80" height="38" rx="18" fill="#050505"/><path d="M88 166c18 18 62 18 80 0M70 75l-22-22M186 181l23 22" fill="none"/>',
-  watch: '<circle cx="128" cy="128" r="45" fill="none"/><path d="M108 83l8-32h24l8 32M108 173l8 32h24l8-32M128 101v27l22 13" fill="none"/>'
+  watch: '<circle cx="128" cy="128" r="45" fill="none"/><path d="M108 83l8-32h24l8 32M108 173l8 32h24l8-32M128 101v27l22 13" fill="none"/>',
+  wealth: '<rect x="72" y="82" width="112" height="84" rx="12" fill="none"/><circle cx="128" cy="124" r="22" fill="none"/><path d="M128 102v44M106 124h44M84 181c14 9 40 9 54 0M84 181v18c14 9 40 9 54 0v-18M146 178c14 8 35 8 48 0M146 178v17c14 8 35 8 48 0v-17" fill="none"/>',
+  typhoon: '<path d="M178 87c-27-35-91-28-111 22-18 46 20 90 72 80" fill="none"/><path d="M75 137c39 31 103 13 111-40" fill="none"/><path d="M105 118c10-24 43-25 56-4 12 20-4 48-34 48" fill="none"/><path d="M80 196l-13 24M121 199l-13 24M162 190l-13 24" fill="none"/>',
+  renovation: '<path d="M65 126l63-54 63 54" fill="none"/><path d="M82 126v62h92v-62" fill="none"/><path d="M103 188v-42h50v42" fill="none"/><path d="M167 74l26 26" fill="none"/><path d="M184 55l17 17-26 26-17-17z"/><path d="M62 79h45" fill="none"/>',
+  cuisine: '<circle cx="128" cy="132" r="54" fill="none"/><circle cx="128" cy="132" r="25" fill="none"/><path d="M128 78c-22 24-22 84 0 108M128 78c22 24 22 84 0 108M74 132h108" fill="none"/><path d="M62 73v51M50 73v51M56 124v66M196 72v118" fill="none"/><path d="M196 72c24 24 20 54 0 70" fill="none"/>',
+  applelife: '<rect x="66" y="82" width="64" height="46" rx="7" fill="none"/><rect x="145" y="71" width="42" height="66" rx="8" fill="none"/><rect x="74" y="148" width="52" height="36" rx="7" fill="none"/><circle cx="162" cy="168" r="24" fill="none"/><path d="M64 199h132M101 128v20M166 137v7M162 93h8M150 168h24M162 156v24" fill="none"/>',
+  airincident: '<path d="M55 127l139-52 16 17-62 48 25 42-14 14-43-35-39 29-13-13 27-42z"/><path d="M64 66c22-18 48-21 74-9M170 59c20 3 36 13 48 31" fill="none"/><path d="M84 205h88" fill="none"/><path d="M128 170l16 29h-32z"/>',
+  car: '<path d="M74 133l18-42h72l18 42z"/><rect x="67" y="130" width="122" height="50" rx="12" fill="none"/><circle cx="98" cy="181" r="13"/><circle cx="158" cy="181" r="13"/><path d="M98 91l-14 39M158 91l14 39M96 67h54" fill="none"/><circle cx="183" cy="73" r="15" fill="none"/><path d="M195 85l21 21" fill="none"/>',
+  midnight: '<path d="M99 93h36v88H99z"/><path d="M117 48c22 25 7 39 0 50-7-11-22-25 0-50z"/><path d="M88 181h58M91 207h52" fill="none"/><path d="M162 70c45 33 38 78 2 93-30 12-43-12-23-26 19-13 38 13 18 38" fill="none"/><path d="M172 183l25 25" fill="none"/>',
+  clique: '<path d="M128 72l56 41-21 66H93l-21-66z" fill="none"/><circle cx="128" cy="72" r="12"/><circle cx="184" cy="113" r="12"/><circle cx="163" cy="179" r="12"/><circle cx="93" cy="179" r="12"/><circle cx="72" cy="113" r="12"/><path d="M128 72l35 107M128 72L93 179M128 72l56 41M128 72l-56 41M72 113h112M72 113l91 66M184 113l-91 66M93 179h70" fill="none"/>',
+  purelove: '<path d="M128 189S68 151 76 107c5-30 38-32 52-8 14-24 47-22 52 8 8 44-52 82-52 82z"/><path d="M128 58v131M112 77h32" fill="none"/><circle cx="128" cy="70" r="22" fill="none"/>',
+  unspeech: '<path d="M78 181h100M91 151h74l13 30H78z"/><path d="M101 151V94h54v57" fill="none"/><circle cx="128" cy="82" r="16"/><path d="M82 86c27-26 65-31 97-8M68 117c39-37 88-42 130-8M188 151c22-21 22-44 0-65" fill="none"/>',
+  boss: '<path d="M87 178h82M128 135v43" fill="none"/><path d="M88 83h80l-12 68H100z"/><path d="M101 83c3-31 51-31 54 0" fill="none"/><rect x="70" y="51" width="116" height="42" rx="6" fill="none"/><path d="M98 72h60M70 112h-18M186 112h18" fill="none"/>'
 };
 
 function stars() {
